@@ -2,65 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contatos;
 use Illuminate\Http\Request;
 
 class ContatosController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Listar todos os contatos método HTTP GET
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return response()->json(Contatos::all());
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
+     * Listar um usuário especifico pelo id método HTTP GET
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $contatos = Contatos::find($id);
+
+        if(!$contatos) {
+            return response()->json([
+                'message'   => "Contato id $id não foi encontrado",
+            ], 404);
+        }
+
+        return response()->json($contatos);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Salvar método HTTP POST
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function store(Request $request)
     {
-        //
+        $contatos = new Contatos();
+        $contatos->fill($request->all());
+        $contatos->save();
+
+        return response()->json($contatos, 201);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualizar método HTTP PUT
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -68,17 +60,34 @@ class ContatosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $contatos = Contatos::find($id);
+
+        if(!$contatos) {
+            return response()->json([
+                'message'   => 'Registro não encontrato',
+            ], 404);
+        }
+
+        $contatos->update($request->all());
+        return response()->json($contatos);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Excluir método HTTP DELETE
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $contatos = Contatos::find($id);
+
+        if(!$contatos) {
+            return response()->json([
+                'message'   => 'Registro não encontrato',
+            ], 404);
+        }
+
+        $contatos->delete();
     }
 }
