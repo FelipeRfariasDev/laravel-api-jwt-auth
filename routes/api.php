@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//http://127.0.0.1:8000/api/teste
+Route::get('/teste', function () {
+    return ('teste api');
+});
