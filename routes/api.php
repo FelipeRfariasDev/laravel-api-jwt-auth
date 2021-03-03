@@ -29,3 +29,5 @@ Route::get('contatos/{id}', 'App\Http\Controllers\ContatosController@show');
 Route::post('contatos', 'App\Http\Controllers\ContatosController@store');
 Route::put('contatos/{id}', 'App\Http\Controllers\ContatosController@update');
 Route::delete('contatos/{id}', 'App\Http\Controllers\ContatosController@destroy');
+
+Route::resource('users', \App\Http\Controllers\UsersController::class);
