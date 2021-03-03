@@ -21,13 +21,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 //http://127.0.0.1:8000/api/contatos
-//Route::resource('contatos', ContatosController::class);
+//Route::resource('contatos', ContatoController::class);
 
 //http://127.0.0.1:8000/api/contatos
-Route::get('contatos', 'App\Http\Controllers\ContatosController@index');
-Route::get('contatos/{id}', 'App\Http\Controllers\ContatosController@show');
-Route::post('contatos', 'App\Http\Controllers\ContatosController@store');
-Route::put('contatos/{id}', 'App\Http\Controllers\ContatosController@update');
-Route::delete('contatos/{id}', 'App\Http\Controllers\ContatosController@destroy');
+Route::get('contatos', 'App\Http\Controllers\ContatoController@index');
+Route::get('contatos/{id}', 'App\Http\Controllers\ContatoController@show');
+Route::post('contatos', 'App\Http\Controllers\ContatoController@store');
+Route::put('contatos/{id}', 'App\Http\Controllers\ContatoController@update');
+Route::delete('contatos/{id}', 'App\Http\Controllers\ContatoController@destroy');
 
-Route::post('login', 'App\Http\Controllers\Api\\AuthController@login');
+Route::get('users', 'App\Http\Controllers\Api\UserController@index');
+
+Route::post('login', 'App\Http\Controllers\Api\AuthController@login');

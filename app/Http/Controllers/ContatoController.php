@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contato;
 use Illuminate\Http\Request;
 
-class ContatosController extends Controller
+class ContatoController extends Controller
 {
     private $model;
 
