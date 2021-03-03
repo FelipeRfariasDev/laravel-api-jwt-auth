@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContatosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +14,11 @@ use App\Http\Controllers\ContatosController;
 |
 */
 
-/*
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-*/
+
 
 //http://127.0.0.1:8000/api/contatos
 //Route::resource('contatos', ContatosController::class);

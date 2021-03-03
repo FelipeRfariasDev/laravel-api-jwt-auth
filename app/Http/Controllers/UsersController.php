@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contato;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class ContatosController extends Controller
+class UsersController extends Controller
 {
     private $model;
 
-    public function __construct(Contato $contatos)
+    public function __construct(User $users)
     {
-        $this->model = $contatos;
+        $this->model = $users;
     }
 
     /**
