@@ -4,12 +4,12 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use \Tymon\JWTAuth\Exceptions\TokenExpiredException;
 
-
-class ApiRotasProtegidas extends BaseMiddleware
+class ApiRotasProtegidas extends VerifyCsrfToken
 {
     /**
      * Handle an incoming request.
@@ -21,11 +21,11 @@ class ApiRotasProtegidas extends BaseMiddleware
     public function handle(Request $request, Closure $next)
     {
         try {
-            $user = JWTAuth::parseToken()->authenticate();
+            JWTAuth::parseToken()->authenticate();
         } catch (\Exception $e) {
-            if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
+            if ($e instanceof TokenInvalidException){
                 return response()->json(['status' => 'Token é inválido']);
-            }else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
+            }else if ($e instanceof TokenExpiredException){
                 return response()->json(['status' => 'O token está expirado']);
             }else{
                 return response()->json(['status' => 'Token de autorização não encontrado']);
