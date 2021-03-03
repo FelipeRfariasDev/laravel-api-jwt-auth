@@ -33,3 +33,11 @@ Route::delete('contatos/{id}', 'App\Http\Controllers\ContatoController@destroy')
 Route::get('users', 'App\Http\Controllers\Api\UserController@index');
 
 Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
+/*
+Route::post('logout', 'AuthController@logout');
+Route::post('refresh', 'AuthController@refresh');
+Route::post('me', 'AuthController@me');
+*/
+Route::group(['middleware' => 'api'], function () {
+    Route::get('users', 'App\Http\Controllers\Api\UserController@index');
+});
