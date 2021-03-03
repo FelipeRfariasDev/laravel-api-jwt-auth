@@ -30,14 +30,13 @@ Route::post('contatos', 'App\Http\Controllers\ContatoController@store');
 Route::put('contatos/{id}', 'App\Http\Controllers\ContatoController@update');
 Route::delete('contatos/{id}', 'App\Http\Controllers\ContatoController@destroy');
 
-Route::get('users', 'App\Http\Controllers\Api\UserController@index');
-
 Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
-/*
-Route::post('logout', 'AuthController@logout');
-Route::post('refresh', 'AuthController@refresh');
-Route::post('me', 'AuthController@me');
-*/
-Route::group(['middleware' => 'auth:api'], function () {
+
+Route::group(['middleware' => 'apiJwt'], function () {
+
+    Route::post('logout', 'App\Http\Controllers\Api\AuthController@logout');
+    Route::post('me', 'App\Http\Controllers\Api\AuthController@me');
+    Route::post('refresh', 'App\Http\Controllers\Api\AuthController@refresh');
+
     Route::get('users', 'App\Http\Controllers\Api\UserController@index');
 });
