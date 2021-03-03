@@ -31,3 +31,5 @@ Route::put('contatos/{id}', 'App\Http\Controllers\ContatosController@update');
 Route::delete('contatos/{id}', 'App\Http\Controllers\ContatosController@destroy');
 
 Route::resource('users', \App\Http\Controllers\UsersController::class);
+
+Route::post('auth/login', 'App\Http\Controllers\Api\\AuthController@login');
