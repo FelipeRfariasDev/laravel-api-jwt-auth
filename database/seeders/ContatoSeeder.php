@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Contato;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
-class UserSeeder extends Seeder
+class ContatoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +14,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $model = new User();
+        $model = new Contato();
         $model->fill([
-            'name' => 'felipe',
-            'email' => 'felipe@gmail.com',
-            'password' => Hash::make('123'),
+            'nome' => 'felipe',
+            'email' => 'felipe@gmail.com'
         ]);
         $model->save();
     }

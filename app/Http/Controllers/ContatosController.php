@@ -9,13 +9,13 @@ class ContatosController extends Controller
 {
     private $model;
 
-    public function __construct(Contato $contatos)
+    public function __construct(Contato $model)
     {
-        $this->model = $contatos;
+        $this->model = $model;
     }
 
     /**
-     * Listar todos os contatos método HTTP GET
+     * Listar todos os registros método HTTP GET
      *
      * @return \Illuminate\Http\Response
      */
@@ -32,15 +32,15 @@ class ContatosController extends Controller
      */
     public function show($id)
     {
-        $contatos = $this->model::find($id);
+        $model = $this->model::find($id);
 
-        if(!$contatos) {
+        if(!$model) {
             return response()->json([
-                'message'   => "Contato id $id não foi encontrado",
+                'message'   => "id $id não foi encontrado",
             ], 404);
         }
 
-        return response()->json($contatos);
+        return response()->json($model);
     }
 
     /**
@@ -64,16 +64,16 @@ class ContatosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $contatos = $this->model::find($id);
+        $model = $this->model::find($id);
 
-        if(!$contatos) {
+        if(!$model) {
             return response()->json([
                 'message'   => 'Registro não encontrato',
             ], 404);
         }
 
-        $contatos->update($request->all());
-        return response()->json($contatos);
+        $model->update($request->all());
+        return response()->json($model);
     }
 
     /**
@@ -84,14 +84,14 @@ class ContatosController extends Controller
      */
     public function destroy($id)
     {
-        $contatos = $this->model::find($id);
+        $model = $this->model::find($id);
 
-        if(!$contatos) {
+        if(!$model) {
             return response()->json([
                 'message'   => 'Registro não encontrato',
             ], 404);
         }
 
-        $contatos->delete();
+        $model->delete();
     }
 }
