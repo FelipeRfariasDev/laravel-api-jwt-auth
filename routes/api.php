@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+/*
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
 
 //http://127.0.0.1:8000/api/contatos
@@ -30,6 +30,4 @@ Route::post('contatos', 'App\Http\Controllers\ContatosController@store');
 Route::put('contatos/{id}', 'App\Http\Controllers\ContatosController@update');
 Route::delete('contatos/{id}', 'App\Http\Controllers\ContatosController@destroy');
 
-Route::resource('users', \App\Http\Controllers\UsersController::class);
-
-Route::post('auth/login', 'App\Http\Controllers\Api\\AuthController@login');
+Route::post('login', 'App\Http\Controllers\Api\\AuthController@login');
