@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class ContatosController extends Controller
 {
+    private $model;
+
+    public function __construct(Contatos $contatos)
+    {
+        $this->model = $contatos;
+    }
+
     /**
      * Listar todos os contatos método HTTP GET
      *
@@ -14,7 +21,7 @@ class ContatosController extends Controller
      */
     public function index()
     {
-        return response()->json(Contatos::all());
+        return response()->json($this->model::all());
     }
 
     /**
@@ -25,7 +32,7 @@ class ContatosController extends Controller
      */
     public function show($id)
     {
-        $contatos = Contatos::find($id);
+        $contatos = $this->model::find($id);
 
         if(!$contatos) {
             return response()->json([
@@ -44,11 +51,8 @@ class ContatosController extends Controller
      */
     public function store(Request $request)
     {
-        $contatos = new Contatos();
-        $contatos->fill($request->all());
-        $contatos->save();
-
-        return response()->json($contatos, 201);
+        $this->model->fill($request->all());
+        return response()->json($this->model->save(), 201);
     }
 
     /**
@@ -60,7 +64,7 @@ class ContatosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $contatos = Contatos::find($id);
+        $contatos = $this->model::find($id);
 
         if(!$contatos) {
             return response()->json([
@@ -80,7 +84,7 @@ class ContatosController extends Controller
      */
     public function destroy($id)
     {
-        $contatos = Contatos::find($id);
+        $contatos = $this->model::find($id);
 
         if(!$contatos) {
             return response()->json([
