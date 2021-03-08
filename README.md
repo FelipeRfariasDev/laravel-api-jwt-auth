@@ -1,4 +1,4 @@
-# API Crud
+# RESTful APIs com laravel e autenticação jwt
 
 ### Instalação
 
@@ -14,4 +14,5 @@ Execute o comando `php artisan jwt:secret` JWT_SECRET será adicionado no arquiv
 
 ### Iniciar API
 
-No diretório `crud-laravel-api` digite `php artisan serve` api estará disponível no endereço `http://localhost:8000/api/contatos`
+No diretório `do projeto` digite `php artisan serve` api estará disponível no endereço `http://localhost:8000`
+
